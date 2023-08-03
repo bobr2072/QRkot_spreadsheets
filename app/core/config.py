@@ -7,7 +7,7 @@ class Settings(BaseSettings):
 
     app_title: str = 'Кошачий благотворительный фонд'
     description: str = 'Сервис для поддержки котиков!'
-    database_url: str = f'sqlite+aiosqlite:///./fastapi.db'
+    database_url: str = 'sqlite+aiosqlite:///./fastapi.db'
     secret: str = 'SECRET'
     lifetime_seconds: int = 3600
     # for auto_create first superuser
