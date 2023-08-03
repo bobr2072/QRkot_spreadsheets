@@ -2,20 +2,20 @@
 
 Charitable foundation for the support of cats. The Foundation collects donations for various targeted projects: for medical care for animals in need, for the arrangement of a cat colony in the basement, for food for cats left without care, and for any other purpose related to supporting animals.
 
-## Now with Google Sheets !
+### Now with Google Sheets !
 
 The project expands the capabilities of the QRKot application and generates a report in a Google spreadsheet
 
 The table displays closed projects, sorted by fundraising speed - from those that closed the fastest to those that took the longest to collect the required amount.
 
 
-### Technologies
+## Technologies
 
 [FastApi](https://fastapi.tiangolo.com) <br>
 [SQLAlchemy](https://www.sqlalchemy.org)
 
 
-### Documentation
+## Documentation
 
 Download the <a href='https://code.s3.yandex.net/Python-dev/openapi.json'>openapi.json</a> project specification:
 
