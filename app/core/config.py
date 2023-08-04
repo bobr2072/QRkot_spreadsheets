@@ -4,6 +4,7 @@ from pydantic import BaseSettings, EmailStr
 
 from datetime import datetime
 
+
 class Settings(BaseSettings):
 
     app_title: str = 'Кошачий благотворительный фонд'
