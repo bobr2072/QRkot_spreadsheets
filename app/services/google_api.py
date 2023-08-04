@@ -4,8 +4,6 @@ from aiogoogle import Aiogoogle
 
 from app.core.config import settings
 
-FORMAT = '%Y/%m/%d %H:%M:%S'
-
 SPREADSHEET_BODY = {
     'properties': {'title': '',
                    'locale': 'ru_RU'},
@@ -18,7 +16,7 @@ SPREADSHEET_BODY = {
 
 
 async def spreadsheets_create(wrapper_services: Aiogoogle) -> str:
-    SPREADSHEET_BODY['properties']['title'] = 'Отчет на {}'.format(datetime.now().strftime(FORMAT))
+    SPREADSHEET_BODY['properties']['title'] = 'Отчет на {}'.format(settings.now_date_time)
     service = await wrapper_services.discover('sheets', 'v4')
 
     response = await wrapper_services.as_service_account(
@@ -49,18 +47,15 @@ async def spreadsheets_update_value(
     projects: list,
     wrapper_services: Aiogoogle
 ) -> None:
-    now_date_time = datetime.now().strftime(FORMAT)
     service = await wrapper_services.discover('sheets', 'v4')
 
-    table_values = [
-        ['Отчет от', now_date_time],
-        ['Топ проектов по скорости закрытия'],
-        ['Название проекта', 'Время сбора', 'Описание']
-    ]
+    table_values = settings.table_values
 
-    for proj in projects:
-        new_row = [str(proj['name']), str(proj['project_lifetime']), str(proj['description'])]
-        table_values.append(new_row)
+    header = ['Name', 'Project Lifetime', 'Description']
+    table_values = [
+        header,
+        *[list(map(str, [value['name'], value['project_lifetime'], value['description']])) for value in table_values]
+    ]
 
     update_body = {
         'majorDimension': 'ROWS',
